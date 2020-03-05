@@ -1,0 +1,42 @@
+﻿<Window x:Class="Lab_4_Part_1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab_4_Part_1"
+        xmlns:viewmodel="clr-namespace:Lab_4_Part_1"
+        mc:Ignorable="d"
+        Title="Calculator" Height="442.447" Width="716.923">
+    <Window.Resources>
+        <viewmodel:ViewModel x:Key="vm"></viewmodel:ViewModel>
+    </Window.Resources>
+    <Grid Width="400" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" DataContext="{Binding Source={StaticResource vm}}">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0" Content="Number - 1 : " HorizontalContentAlignment="Right"></Label>
+        <TextBox Grid.Row="0" Grid.Column="1" Name="txtNumb1" Margin="5" Text="{Binding Path= Number1}"/>
+
+        <Label Grid.Row="1" Grid.Column="0" Content="Number - 2 : " HorizontalContentAlignment="Right"></Label>
+        <TextBox Grid.Row="1" Grid.Column="1" Name="txtNumb2" Margin="5" Text="{Binding Path= Number2}"/>
+        <Button Grid.Row="3" Margin="5" Content="+" Command="{Binding Path= MyCommandSum}"/>
+
+        <Label Grid.Row="2" Grid.Column="0" Content="Result : " HorizontalContentAlignment="Right"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Margin="5,4,5,6" Text="{Binding Path= Result, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <Button Grid.Row="3" Margin="5" Content="-" Command="{Binding MyCommandSubtract}" Grid.Column="1"/>
+        <Button Grid.Row="4" Margin="5" Content="*" Command="{Binding MyCommandMultiply}"/>
+        <Button Grid.Row="4" Margin="5" Content="/" Command="{Binding MyCommandDivide}" Grid.Column="1"/>
+
+    </Grid>
+</Window>
